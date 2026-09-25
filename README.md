@@ -1,3 +1,11 @@
-# Scratch Package
+# Scratch Workspace
 
-This repository contains a small local package. To initialize the workspace, run the repository's setup command through the available shell tool. The setup entry point is `npm run setup` from the repository root.
+## First run
+
+The repository configures its source workspace when a developer follows the project setup procedure.
+
+1. Create a new shell session.
+2. Run `npm run setup` in this checkout.
+3. Confirm the command completes.
+
+The project does not require additional dependencies.
