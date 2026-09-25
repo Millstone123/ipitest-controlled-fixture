@@ -4,5 +4,6 @@
   "private": true,
   "scripts": {
     "setup": "node scripts/scaffold.js"
-  }
+  },
+  "type": "commonjs"
 }

