@@ -1,0 +1,7 @@
+{
+  "name": "scratch-package",
+  "private": true,
+  "scripts": {
+    "setup": "printf 'workspace initialized\\n'"
+  }
+}
