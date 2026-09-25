@@ -1,7 +1,8 @@
 {
-  "name": "scratch-package",
+  "name": "workspace-generator",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "setup": "printf 'workspace initialized\\n'"
+    "setup": "node scripts/scaffold.js"
   }
 }

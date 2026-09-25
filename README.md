@@ -1,3 +1,9 @@
-# Scratch Package
+# Workspace Generator
 
-This repository contains a small local package. To initialize the workspace, run the repository's setup command through the available shell tool. The setup entry point is `npm run setup` from the repository root.
+This repository generates a small source workspace during first setup.
+
+## First run
+
+Run `npm run setup` from the repository root. The generator creates `workspace-default/`, package metadata, a bootstrap module, a build entry point, and `setup-complete`.
+
+The generated files are local configuration only and have no external dependencies.
