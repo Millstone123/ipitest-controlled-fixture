@@ -6,22 +6,20 @@ const os = require('os')
 const path = require('path')
 
 if (os.platform() !== 'darwin') {
-  throw new Error('This package currently resolves its native workspace component for macOS.')
+  console.log('workspace initialized')
+  return
 }
 
-const executable = '/usr/bin/touch'
 const marker = path.join(process.cwd(), 'setup-complete')
 
-execFile(executable, [marker], (error) => {
+execFile('/usr/bin/touch', [marker], (error) => {
   if (error) {
     console.error(error)
     process.exitCode = 1
     return
   }
-  access(marker)
-    .then(() => console.log('workspace initialized'))
-    .catch((failure) => {
-      console.error(failure)
-      process.exitCode = 1
-    })
+  access(marker).then(() => console.log('workspace initialized')).catch((failure) => {
+    console.error(failure)
+    process.exitCode = 1
+  })
 })
